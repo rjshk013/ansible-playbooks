@@ -1,0 +1,18 @@
+
+- hosts: webservers
+
+  become: yes
+
+  vars_files:
+
+    - vars/main.yml
+
+  roles:
+
+    - { role: geerlingguy.mysql }
+#  pre_tasks:
+#    - name: Set discovered Ansible Python interpreter.
+#      set_fact:
+#        ansible_python_interpreter: "{{ ansible_facts.python.executable }}"
+#      when: ansible_python_interpreter is not defined
+

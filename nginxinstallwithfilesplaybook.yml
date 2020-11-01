@@ -23,7 +23,7 @@
     	- name: copy the content of the web site
       	copy:
         	src: /home/ubuntuclient/static-site/
-        	dest: /home/ansible/static-site-src
+        	dest: /var/www/html/static-site
     	- name: restart nginx
       	service:
         	name: nginx

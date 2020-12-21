@@ -69,3 +69,9 @@ check ping :
 ansible -i inventory -m ping all # using all'
 
 ansible -i inventory -m ping remoteclients # specific group
+
+To check the disk size of Ansible hosts, run the following command:
+
+ansible -m shell -a 'df -h' groupname
+
+ansible -m shell -a 'uptime' groupname

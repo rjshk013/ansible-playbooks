@@ -1,0 +1,62 @@
+ansible host configuration methods 
+----------------------------------
+1--using default inventoryhosts
+
+nano /etc/ansible/hosts
+
+create groups and add all servers with ip
+
+[webservers]
+server_name ansible_host=[server_ip]
+
+example : server1 ansible_host=192.168.1.1
+
+create a backup of /etc/ansible/hosts
+
+
+-------------------------------------------------------------------
+
+2.create custom inventory file instead of default /etc/ansible/hosts
+
+create a inventory file named "inventory" and add below contents 
+
+[myremote] #group name 
+
+remote1 ansible_host=111.111.111.111 
+
+remote2 ansible_host=222.222.222.222 
+
+remote3 ansible_host=333.333.333.333 
+
+
+[myremote:vars] #subgroup with variables 
+
+ansible_python_interpreter=/usr/bin/python3
+ansible_user='ubuntu'           # Username for ssh connection
+ansible_become='yes'             # Run commands as root user?
+#ansible_become_pass='PasswordForVivekUser' # Password for sudo user i.e. ansible_user password
+ansible_become_method='sudo'     # How do I become root user? Use sudo.
+
+
+check inventory file by running command:
+
+ansible-inventory -i inventory --list -y
+
+will get output as 
+
+all:
+  children:
+    remoteclients:
+      hosts:
+        172.31.83.86:
+          ansible_become: 'yes'
+          ansible_become_method: sudo
+          ansible_python_interpreter: /usr/bin/python3
+          ansible_user: ubuntu
+    ungrouped: {}
+
+check ping :
+
+ansible -i inventory -m ping all # using all'
+
+ansible -i inventory -m ping remoteclients # specific group

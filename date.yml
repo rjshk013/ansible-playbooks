@@ -1,0 +1,12 @@
+---
+- hosts: lanhosts
+ 
+  tasks:
+          - name: Get date for testing purpose
+            command: /bin/date
+            changed_when: False
+            register: date
+ 
+          - debug: var={{ item }}
+            with_items:
+                    - date.stdout

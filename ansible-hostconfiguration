@@ -11,6 +11,15 @@ server_name ansible_host=[server_ip]
 
 example : server1 ansible_host=192.168.1.1
 
+Next, create a group named group_vars in /etc/ansible directory and create a files for each group you want to configure:
+
+mkdir /etc/ansible/group_vars nano /etc/ansible/group_vars/webservers
+
+Add the port and user for remote hosts:
+
+ ansible_port: 22
+ ansible_user: root
+
 create a backup of /etc/ansible/hosts
 
 

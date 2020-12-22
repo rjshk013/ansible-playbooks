@@ -33,3 +33,22 @@ Need to create  /etc/ansible/group_vars/webservers file.No need to entry any val
 run playbook from the location of yml file:
 
 ansible-playbook mysql8install.yml
+
+2.nginxgit.yml
+
+must have static_site.cfg file on ansible server with below contents :
+
+server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html/webserver;
+        server_name _;
+        location / {
+                try_files $uri $uri/ =404;
+        }
+}
+
+This playbook will install nginx on remote host and will clone the repo in /var/www/html location
+
+So if you check remotehost browser as localhost you can see the static html page.
+

@@ -52,3 +52,15 @@ This playbook will install nginx on remote host and will clone the repo in /var/
 
 So if you check remotehost browser as localhost you can see the static html page.
 
+
+postgresqlinstall.yml:
+----------------------
+Normally you get error : atal: [web-host1]: FAILED! => {"changed": false, "msg": "Failed to import the required Python library (psycopg2) on ansnode1's Python /usr/bin/python3. Please read module documentation and install in the appropriate location. If the required library is installed, but Ansible is using the wrong Python interpreter, please consult the documentation on ansible_python_interpreter"}
+
+
+
+Fix: run the ansible playbook with explicit ansible_interprter 
+
+ansible-playbook postgresql.yml -e "ansible_python_interpreter=/usr/bin/python"
+
+

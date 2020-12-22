@@ -24,8 +24,12 @@ ansible_become_method='sudo'
 
 content of /etc/ansible/host_vars/web-host1 
 
-ansible_ssh_host: 192.168.1.8
+ansible_ssh_host: 192.168.1.8 #remote host ip 
 ansible_ssh_port: 22
-root_password: root
+root_password: root #mysql root password will be set 
 
 Need to create  /etc/ansible/group_vars/webservers file.No need to entry any values
+
+run playbook from the location of yml file:
+
+ansible-playbook mysql8install.yml

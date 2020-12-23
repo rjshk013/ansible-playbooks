@@ -47,7 +47,7 @@ ansible_become='yes'             # Run commands as root user?
 ansible_become_method='sudo'     # How do I become root user? Use sudo.
 
 
-check inventory file by running command:
+check inventory file commands from the file where we  created 
 
 ansible-inventory -i inventory --list -y
 

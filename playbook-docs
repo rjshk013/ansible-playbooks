@@ -1,8 +1,8 @@
 1.tomcat-setup.yml
 
-git clone https://github.com/jmutai/tomcat-ansible.git
+git clone https://github.com/rjshk013/tomcatserver-ansible
 
-cd tomcat-ansible
+cd tomcatserver-ansible
 
 ls
 hosts   LICENSE  README.md  roles  tomcat-setup.yml

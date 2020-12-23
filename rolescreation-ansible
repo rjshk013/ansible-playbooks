@@ -1,0 +1,73 @@
+create 2 roles for nodejs,prerequisites
+
+cd /etc/ansible/roles
+
+ansible-galaxy init prerequisites
+
+it will create a role named "prerequisites"
+
+we need to create main.yml files under tasks directory under prerequisites
+
+it will be for install git on ansible node :
+
+---
+- name: Install git
+  apt:
+    name: git
+    state: present
+    update_cache: yes
+
+2.create 2nd role as nodejs in the above method
+
+ansible-galaxy init nodejs
+
+create main.yml under nodejs/tasks folder as below 
+
+---
+- name: Node.js - Get script
+  get_url:
+    url: "http://deb.nodesource.com/setup_12.x"
+    dest: "{{ var_node }}/nodejs.sh"
+
+- name: Node.js - Set execution permission to script
+  file:
+    path: "{{ var_node }}/nodejs.sh"
+    mode: "u+x"
+
+- name: Node.js - Execute installation script
+  shell: "{{ var_node }}/nodejs.sh"
+
+- name: Node.js - Remove installation script
+  file:
+    path: "{{ var_node}}/nodejs.sh"
+    state: absent
+
+- name: Node.js - Install Node.js
+  apt: name={{ item }} state=present update_cache=yes
+  with_items:
+    - build-essential
+    - nodejs
+
+- name: Node.js - Install bower and gulp globally
+  npm: name={{ item }} state=present global=yes
+  with_items:
+    - bower
+    - gulp
+
+
+after that create a playbook under /etc/ansible folder 
+
+here it is meanstack.yml
+
+---
+- hosts: web-host1
+  become: true
+  vars:
+    ansible_become_pass: coolminds
+    var_node: /tmp
+  roles:
+      - prerequisites
+      - nodejs
+
+ansible-playbook /etc/ansible/meanstack.yml
+

@@ -75,3 +75,29 @@ To check the disk size of Ansible hosts, run the following command:
 ansible -m shell -a 'df -h' groupname
 
 ansible -m shell -a 'uptime' groupname
+---------------------------------------------
+
+Using 2 different groups-with hosts under groups :
+
+--------------------------------------------------
+
+[web-servers] #group name
+remote1 ansible_host=192.168.10.15
+
+[web-servers:vars] #subgroup with variables
+
+ansible_python_interpreter=/usr/bin/python3
+ansible_user='ansnode-1'           # Username for ssh connection
+ansible_become='yes'             # Run commands as root user?
+#ansible_become_pass='PasswordForVivekUser' # Password for sudo user i.e. ansib$
+ansible_become_method='sudo'     # How do I become root user? Use sudo.
+[db-servers]
+remote2 ansible_host=192.168.10.15
+[db-servers:vars]
+ansible_python_interpreter=/usr/bin/python
+ansible_user='ansnode-1'           # Username for ssh connection
+ansible_become='yes'             # Run commands as root user?
+#ansible_become_pass='PasswordForVivekUser' # Password for sudo user i.e. ansib$
+ansible_become_method='sudo'     # How do I become root user? Use sudo.
+
+

@@ -14,11 +14,26 @@ eg:
 
 [tomcat-nodes]
 web1 ansible_host=192.168.10.15
-[tomcat-nodes:var]
+[tomcat-nodes:vars]
 ansible_python_interpreter=/usr/bin/python3
 ansible_user='ansnode-1'
 ansible_become='yes'
-ansible_become_method='sudo
+ansible_become_method='sudo'
+
+Check inventory connfiguration:
+ansible-inventory -i hosts --list -y
+
+will get output as 
+
+all:
+  children:
+    tomcat-nodes:
+      hosts:
+        web1:
+          ansible_host: 192.168.10.15
+          ansible_python_interpreter: /usr/bin/python3
+    ungrouped: {}
+
 
 
 Update variables in playbook file( tomcat-setup.yml)– Set Tomcat version, remote user and Tomcat UI access credentials 
@@ -39,5 +54,12 @@ vim tomcat-setup.yml
   roles:
     - tomcat
 
+
+Run palaybook
+---------------
+
+Run the playbook from the cloned directory
+
+ansible-playbook -i hosts tomcat-setup.yml
 
 

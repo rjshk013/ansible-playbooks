@@ -43,7 +43,7 @@ remote3 ansible_host=333.333.333.333
 ansible_python_interpreter=/usr/bin/python3
 ansible_user='ubuntu'           # Username for ssh connection
 ansible_become='yes'             # Run commands as root user?
-#ansible_become_pass='PasswordForVivekUser' # Password for sudo user i.e. ansible_user password
+#ansible_become_pass='Password' # Password for sudo user i.e. ansible_user password
 ansible_become_method='sudo'     # How do I become root user? Use sudo.
 
 
@@ -89,7 +89,7 @@ remote1 ansible_host=192.168.10.15
 ansible_python_interpreter=/usr/bin/python3
 ansible_user='ansnode-1'           # Username for ssh connection
 ansible_become='yes'             # Run commands as root user?
-#ansible_become_pass='PasswordForVivekUser' # Password for sudo user i.e. ansib$
+#ansible_become_pass='Password' # Password for sudo user i.e. ansib$
 ansible_become_method='sudo'     # How do I become root user? Use sudo.
 [db-servers]
 remote2 ansible_host=192.168.10.15
@@ -97,7 +97,7 @@ remote2 ansible_host=192.168.10.15
 ansible_python_interpreter=/usr/bin/python
 ansible_user='ansnode-1'           # Username for ssh connection
 ansible_become='yes'             # Run commands as root user?
-#ansible_become_pass='PasswordForVivekUser' # Password for sudo user i.e. ansib$
+#ansible_become_pass='Password' # Password for sudo user i.e. ansib$
 ansible_become_method='sudo'     # How do I become root user? Use sudo.
 
 

@@ -63,7 +63,7 @@ here it is meanstack.yml
 - hosts: web-host1
   become: true
   vars:
-    ansible_become_pass: coolminds
+    ansible_become_pass: password
     var_node: /tmp
   roles:
       - prerequisites

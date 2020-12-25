@@ -63,3 +63,61 @@ Run the playbook from the cloned directory
 ansible-playbook -i hosts tomcat-setup.yml
 
 
+Install multiple packages using ansible apt module:
+
+-------------------------------------------
+---
+ - name: Playbook to install multi-packages
+   hosts: web-servers
+   become: true
+   tasks:
+    - name: Ansible apt install multi-packages
+      apt: name={{ item}} state=present
+      with_items:
+       - git
+       - python3-pip
+
+Install pip packages using ansible pip module:
+----------------------------------------------
+- hosts: web-servers
+  tasks:
+  - name: Installing pymysql python library using Ansible pip module
+    pip:
+      name: pymysql,psycopg2
+
+
+Removing a Python library
+
+You can remove a python library in a similar manner by just changing the state to ‘absent’. The following task will remove the ‘NumPy’ and ‘SciPy’ Python libraries from the remote servers.
+
+- hosts: all
+  tasks:
+  - name: Removing Python libraries
+    pip:
+      name: NumPy,SciPy
+      state: absent
+      
+      Using requirements.txt file 
+      ----------------------------
+      
+      In the below task, I am trying to execute the requirements file in the location /tmp/req.txt.
+      
+      - hosts: all
+  tasks:
+  - name: Installing python libraries using requirements file in Ansible
+    pip:
+      requirements: req.txt
+      chdir: /tmp
+      
+      
+      Need to create req.txt on remote server before running playbook
+      
+      req.txt
+      -------
+nltk==3.0.0
+numpy<2.0.0
+scipy>=1.0.0
+pymysql      
+
+
+

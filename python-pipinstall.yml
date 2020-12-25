@@ -1,0 +1,10 @@
+---
+ - name: Playbook to install python-pip
+   hosts: web-servers
+   become: true
+   tasks:
+    - name: Ansible apt install python-pip
+      apt:
+        name: python-pip
+        state: present
+

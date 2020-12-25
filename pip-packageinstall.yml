@@ -1,0 +1,5 @@
+- hosts: web-servers
+  tasks:
+  - name: Installing pymysql python library using Ansible pip module
+    pip:
+      name: pymysql

@@ -1,0 +1,10 @@
+---
+ - name: Playbook to install multi-packages
+   hosts: web-servers
+   become: true
+   tasks:
+    - name: Ansible apt install multi-packages
+      apt: name={{ item}} state=present
+      with_items:
+       - git
+       - python3-pip

@@ -1,0 +1,23 @@
+---
+- hosts: web-servers
+  tasks:
+      
+    - name: Install aptitude
+      apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
+      tags: [ system ]
+
+    - name: Install prerequired Packages
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: [ 'apache2', 'git', 'python-pip', 'python3-pip', 'unzip', 'g++','make', 'cmake', 'clang', 'libssl-dev', 'libgmp-dev', 'openssl', 'libpcre3-dev', 'software-properties-common' ]
+      tags: [ system ]
+
+
+    - name: "Add repository for PHP 7.1."
+      apt_repository: 
+        repo="ppa:ondrej/php" 
+        update_cache=yes
+
+    - name: Install php Packages
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: [ 'php7.1', 'php7.1-fpm', 'php7.1-dev', 'php7.1-cgi' ]
+      tags: [ system ]

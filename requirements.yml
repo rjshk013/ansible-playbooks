@@ -1,0 +1,14 @@
+---
+- hosts: web-servers
+  become: true
+
+  tasks:
+    - name: Install prerequisites
+      apt: name=aptitude update_cache=yes state=latest force_apt_get=yes
+      tags: [ system ]
+
+    - name: Install LAMP Packages
+      apt: name={{ item }} update_cache=yes state=latest
+      loop: [ 'apache2', 'git', 'python-pip', 'python3-pip', 'unzip', 'g++','make', 'cmake', 'clang', 'libssl-dev', 'libgmp-dev', 'openssl', 'libpcre3-dev' ]
+      tags: [ system ]
+

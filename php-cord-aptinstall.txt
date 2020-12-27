@@ -1,0 +1,9 @@
+Install php 7.1 on ubuntu 18.04
+--------------------------------
+
+sudo apt-get update 
+sudo apt-get install -y software-properties-common
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+sudo apt-get install -y php7.1
+sudo apt-get install -y g++ git make cmake clang libssl-dev libgmp-dev php7.1-cgi php7.1-fpm  php7.1-dev openssl libpcre3-dev

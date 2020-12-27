@@ -121,3 +121,11 @@ pymysql
 
 
 
+requirements.yml
+-----------------
+If you need to install multiple packages using apt module & view the installed packages in a loop ,use this playbook and edit required packages .
+
+if you want to troubleshoot run playbook with -vvvv
+
+ansible-playbook -i ansible/inventory requirements.yml
+

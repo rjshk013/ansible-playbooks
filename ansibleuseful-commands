@@ -42,3 +42,21 @@ Example 3: Create multiple directories. To create multiple directories with one 
      - '/home/ansnode-1/vn1'
      - '/home/ansnode-1/vn2'
      - '/home/ansnode-1/vn3'
+
+Example 4: Create a user. Let’s look at the user module to create and delete users in the playbook.
+
+---
+- hosts: webservers
+  become: true
+  tasks:
+  - name: Create User
+    user: name=niranjan password=niranjan groups=ansible shell=/bin/bash
+    
+    Example 5: Remove user. Removing a user is very easy and it will need the state to be set to absent. This is equivalent to the userdel command in Linux.
+---
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Remove User
+    user:
+     name=rajesh state=absent remove=yes force=yes

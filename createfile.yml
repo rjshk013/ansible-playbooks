@@ -1,0 +1,7 @@
+---
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Create a file
+    file: path=/home/ansnode-1/raju.txt state=touch
+

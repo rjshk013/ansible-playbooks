@@ -1,0 +1,6 @@
+---
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Create directory
+    file: path=/home/ansnode-1/raju state=directory mode=775 owner=ansnode-1 group=ansnode-1

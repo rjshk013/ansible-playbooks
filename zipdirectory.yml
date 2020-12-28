@@ -1,0 +1,9 @@
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Ansible zip directory example
+    archive:
+     path:
+      - /home/ansnode-1/*
+     dest: /home/ansnode-1/Downloadsback.zip
+     format: zip

@@ -1,0 +1,6 @@
+---
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Copy content to file
+    copy: src=/home/ubuntuclient/raju.txt dest=/tmp/niranjan.txt

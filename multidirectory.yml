@@ -1,0 +1,10 @@
+---
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Create multiple directories
+    file: path={{item}} state=directory
+    with_items:
+     - '/home/ansnode-1/vn1'
+     - '/home/ansnode-1/vn2'
+     - '/home/ansnode-1/vn3'

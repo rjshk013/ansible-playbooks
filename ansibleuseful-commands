@@ -60,3 +60,20 @@ Example 4: Create a user. Let’s look at the user module to create and delete u
   - name: Remove User
     user:
      name=rajesh state=absent remove=yes force=yes
+     
+     In the above playbook, remove=yes will remove the home directory and force=yes will remove the files in the directory
+     
+     Example 6: Copy content to a file using the copy module.
+
+If you need to copy a file to the target machines or servers use the src and dest in the copy module.
+
+---
+- hosts: webservers
+  become: true
+  tasks:
+  - name: Copy content to file
+    copy: content="Hello World Niranjan \n" dest=/home/ansible/niranjan.txt
+
+For Example,
+
+copy: src=/home/ansible/niranjan.txt dest=/tmp/niranjan.txt #will copy content from niranjan.txt in ansibleserver to remote server by creating new file in /tmp if it is not created 

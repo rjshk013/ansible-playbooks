@@ -1,0 +1,8 @@
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Replace example
+    replace:
+     path: /home/ansnode-1/raju.txt
+     regexp: 'this'
+     replace: "world"

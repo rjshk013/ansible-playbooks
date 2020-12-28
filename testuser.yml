@@ -1,0 +1,15 @@
+---
+- hosts: web-servers
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+   - name: Add user "test" to remote server
+     user:
+       name: test
+       groups: sudo
+       shell: /bin/bash
+       state: present
+       createhome: yes
+       system: no
+       password: '$6$nMkxi3ozzhikLI$keJLSEBhIe.Z00CIm/bsuX9ZCuS9bHE2kddq8bdewffMsa3AmyHDx0AQjdtlJZ6yuk9qBHyjfgWCsDIaDREXO0'

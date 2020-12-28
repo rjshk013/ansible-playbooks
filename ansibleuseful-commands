@@ -168,4 +168,12 @@ This will show time :
   - name: Date and Time Example in Ansible
     debug:
      var=ansible_date_time.time
+     
+     
+     - hosts: all
+  tasks:
+  - name: Ansible timestamp filename example
+    command: touch niranjan{{ansible_date_time.date}}.log
+
+The above playbook will create a dynamic file based on the current date for E.g. niranjan2018-07-15.log
 

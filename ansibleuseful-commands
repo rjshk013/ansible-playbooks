@@ -91,3 +91,47 @@ Using replace module we can replace a word with another word. The replace module
      regexp: 'this'
      replace: "world"
 
+
+Example 8: Archive or ZIP files and Folders
+
+Using the Ansible archive module you can compress files or folders to ‘zip’, ‘.gz’, or ‘bz2’ format.
+
+Note: The files or folders to be compressed should be available on the target servers and should have the packages for tar, bzip2, gzip, zip file installed on them. You can have a separate playbook task for installing these packages.
+
+---
+- hosts: all
+  become: true
+  tasks:
+  - name: Ansible zip file example
+    archive:
+     path: /home/ansible/niranjan.txt
+     dest: /home/ansible/niranjan.zip
+     format: zip
+     
+     ---
+- hosts: all
+  tasks:
+  - name: Ansible zip multiple files example
+  archive:
+   path:
+    - /home/ansible/niranjan1.txt
+    - /home/ansible/niranjan2.txt
+   dest: /home/ansible/niranjan.zip
+   format: zip
+
+The above playbook will zip multiple files to niranjan.zip file.
+
+- hosts: all
+  tasks:
+  - name: Ansible zip directory example
+    archive:
+     path:
+      - /home/ansible/*
+     dest: /home/ansible/niranjan.zip
+     format: zip
+
+The above playbook will zip all files in the /home/ansible directory.
+
+If you want to zip contents from a particular directory specify that folder ex,/home/ansible/Downloads
+
+The file should be in remote servers

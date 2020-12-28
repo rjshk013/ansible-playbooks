@@ -1,0 +1,31 @@
+To run any playbook use the following command
+
+$ ansible-playbook <playbook.yml>
+
+To check the playbook for syntax errors
+
+$ ansible-playbook <playbook.yml> --syntax-check
+
+To view hosts list
+
+$ ansible-playbook <playbook.yml> --list-hosts
+
+Example 1: Create the file on the target machines or servers as mentioned in the inventory file and the webserver’s group, save the below code with .yml extension and run the playbook.
+
+- hosts: webservers
+  become: true
+  tasks:
+  - name: Create a file
+    file: path=/home/remotehostname/raju.txt state=touch
+
+In the above example, we have used the file module to create the file.
+
+
+Example 2: Create a directory with the mode as 775 and owner/group as Ansible.
+
+---
+- hosts: webservers
+  become: true
+  tasks:
+  - name: Create directory
+    file: path=/home/ansible/niranjan state=directory mode=775 owner=ansible group=ansible

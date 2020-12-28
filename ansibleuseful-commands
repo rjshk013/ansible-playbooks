@@ -135,3 +135,37 @@ The above playbook will zip all files in the /home/ansible directory.
 If you want to zip contents from a particular directory specify that folder ex,/home/ansible/Downloads
 
 The file should be in remote servers
+
+Example 9: Working with date and timestamp
+
+Using the system date and timestamp helps in certain status or logging purposes. The Ansible facts provide access to remote or target servers date and time. So we can use the debug module to print the output along with the var attribute as shown below.
+
+---
+- hosts: webservers
+  become: true
+  tasks:
+  - name: Date and Time Example in Ansible
+    debug:
+     var=ansible_date_time.date
+
+
+This will display date during play task:
+
+TASK [Date and Time Example in Ansible] ******************************************************************************************************
+task path: /home/ubuntuclient/showdate.yml:6
+ok: [remote1] => {
+    "ansible_date_time.date": "2020-12-28"
+}
+
+
+This will show time :
+---------------------
+
+---
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Date and Time Example in Ansible
+    debug:
+     var=ansible_date_time.time
+

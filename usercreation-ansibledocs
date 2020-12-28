@@ -1,0 +1,34 @@
+You can't put a plaintext password into Ansible. Instead you need to generate one!
+
+The easiest way to do this is with the mkpasswd command:
+
+mkpasswd --method=sha-512
+
+This will prompt you for the plaintext password and will give you a hashed password string you can paste into the task definition
+
+Here for For password secret, I get hash $6$F4NWXRFtSdCi8$DsB5vvMJYusQhSbvGXrYDXL6Xj37MUuqFCd4dGXdKd6NyxT3lpdELN07/Kpo7EjjWnm9zusFg/LLFv6oc.ynu/
+
+So need to copy this hashed password into playbook.So it will look like 
+
+---
+- hosts: web-servers
+  become: yes
+  become_method: sudo
+  gather_facts: no
+  tasks:
+   - name: Add user "test" to remote server
+     user:
+       name: test
+       groups: sudo
+       shell: /bin/bash
+       state: present
+       createhome: yes
+       system: no
+       password: '$6$nMkxi3ozzhikLI$keJLSEBhIe.Z00CIm/bsuX9ZCuS9bHE2kddq8bdewffMsa3AmyHDx0AQjdtlJZ6yuk9qBHyjfgWCsDIaDREXO0'
+
+
+Installing mkpasswd
+
+To get the mkpasswd command:
+
+    On Debian/Ubuntu systems, mkpasswd likely exists, but if not, it's part of the whois package: sudo apt-get install -y whois. 

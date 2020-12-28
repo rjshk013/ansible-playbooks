@@ -77,3 +77,17 @@ If you need to copy a file to the target machines or servers use the src and des
 For Example,
 
 copy: src=/home/ansible/niranjan.txt dest=/tmp/niranjan.txt #will copy content from niranjan.txt in ansibleserver to remote server by creating new file in /tmp if it is not created 
+
+
+Example 7: Replace all instances of a string.
+
+Using replace module we can replace a word with another word. The replace module will need 3 parameters i.e. ‘path’, ‘regexp’ (to find the particular word) and ‘replace’ (providing another word for replacement).
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Replace example
+    replace:
+     path: /home/ansnode-1/raju.txt  #remoteserver file path
+     regexp: 'this'
+     replace: "world"
+

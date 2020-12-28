@@ -29,3 +29,16 @@ Example 2: Create a directory with the mode as 775 and owner/group as Ansible.
   tasks:
   - name: Create directory
     file: path=/home/ansible/niranjan state=directory mode=775 owner=ansible group=ansible
+
+Example 3: Create multiple directories. To create multiple directories with one single task you can use the loop with_items statement. So when you run the below playbook it is interpreted as 3 different tasks.
+
+---
+- hosts: web-servers
+  become: true
+  tasks:
+  - name: Create multiple directories
+    file: path={{item}} state=directory
+    with_items:
+     - '/home/ansnode-1/vn1'
+     - '/home/ansnode-1/vn2'
+     - '/home/ansnode-1/vn3'

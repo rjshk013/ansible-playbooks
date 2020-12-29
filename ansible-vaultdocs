@@ -1,0 +1,42 @@
+to create an encrypted file mysecrets.yml execute the command.
+
+ ansible-vault create mysecrets.yml
+
+You will thereafter be prompted for a password, and after confirming it, a new window will open using the vi editor .
+Once you are done simply save and exit the playbook. And that’s just about it when creating an encrypted file.
+contents : this is secret
+
+To verify the file encryption, use the cat command as shown.
+
+cat mysecrets.yml
+
+How to View an Encrypted File in Ansible
+
+If you want to view an encrypted file, simply pass the ansible-vault view command as shown below.
+
+# ansible-vault view mysecrets.yml
+
+How to Edit an Encrypted File in Ansible
+
+To make changes to an encrypted file use the ansible-vault edit command as shown.
+
+# ansible-vault edit mysecrets.yml
+
+As always, provide the password and thereafter proceed editing the file.
+
+How to Change Ansible Vault Password
+
+In case you feel the need to change the Ansible vault password, you can easily do so using the ansible-vault rekey command as shown below.
+
+# ansible-vault rekey mysecrets.yml
+
+This prompts you for the vault password and later requests you to enter the new password and later confirm it.
+
+
+How to Encrypt an Unencrypted File in Ansible
+
+Suppose you want to encrypt an unencrypted file, you can do so by running the ansible-vault encrypt command as shown.
+
+# ansible-vault encrypt classified.txt
+
+reference : https://www.tecmint.com/use-ansible-vault-in-playbooks-to-protect-sensitive-data/

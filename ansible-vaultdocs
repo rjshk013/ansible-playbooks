@@ -40,3 +40,14 @@ Suppose you want to encrypt an unencrypted file, you can do so by running the an
 # ansible-vault encrypt classified.txt
 
 reference : https://www.tecmint.com/use-ansible-vault-in-playbooks-to-protect-sensitive-data/
+
+---------------------------------------------------------------------------------------------
+Encrypt ansible playbook using ansible-vault
+
+1.Encrypt ansible-playbook with ansible-vault
+
+ansible-vault encrypt <playbook>
+
+run the playbook using ansible-vault
+
+ansible-playbook playbook --ask-vault-pass

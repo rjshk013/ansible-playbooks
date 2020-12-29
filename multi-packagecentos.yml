@@ -1,0 +1,12 @@
+---
+  - hosts: db-servers
+    gather_facts: false
+    tasks:
+        - name: Install yum package in Ansible example  
+          yum:
+           name: "{{ item }}"  
+           state: latest
+          with_items:  
+          - git  
+          - httpd  
+          - mysql  

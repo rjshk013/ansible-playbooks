@@ -1,0 +1,32 @@
+---
+- hosts: db-servers
+  become: yes
+  become_method: sudo
+  connection: ssh
+  tasks:
+   - name: Add group "ansible" to remote server
+     group:
+       name: ansible
+       state: present
+   - name: Add user "client-1" to remote server
+     user:
+       name: ansible
+       groups: ansible,wheel
+       shell: /bin/bash
+       state: present
+       createhome: yes
+       system: no
+       password: '$6$U.NQsPSUC.RK0Am$x5Y/zV51KUhrjvzxHMtYw06y4B2nhfSuOqunkHXlXlnmiKMWsFPJavDloJVcAKBK.qdbpG2Zn9fDsw.OeVoDF1'
+   - name: Create a 2048-bit SSH key for user client1 in ~client1/.ssh/id_rsa
+     user:
+       name: ansible
+       generate_ssh_key: yes
+       ssh_key_bits: 2048
+       ssh_key_file: .ssh/id_rsa
+   - lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%wheel'
+        line: '%wheel ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+

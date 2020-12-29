@@ -51,3 +51,7 @@ ansible-vault encrypt <playbook>
 run the playbook using ansible-vault
 
 ansible-playbook playbook --ask-vault-pass
+
+decrpt file:
+
+ansible-vault decrypt playbook

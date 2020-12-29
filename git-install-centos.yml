@@ -1,0 +1,8 @@
+---
+  - hosts: db-servers
+    tasks:
+        - name: Install yum package in Ansible example  
+          yum:
+           name: git
+           state: latest
+        

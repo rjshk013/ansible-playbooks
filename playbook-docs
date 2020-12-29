@@ -129,3 +129,15 @@ if you want to troubleshoot run playbook with -vvvv
 
 ansible-playbook -i ansible/inventory requirements.yml
 
+
+Playbooks for centos
+---------------------
+
+Need to set python enterpretor 2 instead of python 3
+
+
+
+
+
+
+

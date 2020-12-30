@@ -137,7 +137,15 @@ Need to set python enterpretor 2 instead of python 3
 
 
 
+nginxinstall-centos7.yml
+-------------------------
+Need to create a folder named templates and create a sample index.html(upload any index.html)
+run the playbook from this folder only
 
+sample
+-----
 
+<h1>Welcome to Ansible</h1>
+    <img src="/ansible-logo.jpg" />
 
 

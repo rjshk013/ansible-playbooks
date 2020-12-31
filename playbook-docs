@@ -148,4 +148,26 @@ sample
 <h1>Welcome to Ansible</h1>
     <img src="/ansible-logo.jpg" />
 
+nodejs install on centos 7
+----------------------------
+
+clone the repo: https://github.com/geerlingguy/ansible-role-nodejs
+
+cd ansible-role-nodejs
+
+mkdir vars
+
+Inside vars/main.yml:
+
+nodejs_npm_global_packages:
+  - name: jslint
+  - name: node-sass
+
+example playbook:
+
+- hosts: utility
+  vars_files:
+    - vars/main.yml
+  roles:
+    - geerlingguy.nodejs
 

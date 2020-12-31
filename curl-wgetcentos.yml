@@ -1,0 +1,15 @@
+---
+- name: Install curl and wget
+  gather_facts: 'no'
+  hosts: db-servers
+  become: yes
+
+  tasks:
+    - name: Install curl
+      yum:
+        name: curl
+        state: present
+    - name: Install wget
+      yum:
+        name: wget
+        state: present

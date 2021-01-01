@@ -1,0 +1,24 @@
+---
+- hosts: db-servers
+  become: yes
+  become_method: sudo
+  connection: ssh
+  tasks:
+   - name: Add group "ansible" to remote server
+     group:
+       name: devops
+       state: present
+   - include_vars: ~/mypassword.yml
+   - name: Add users to remote server
+     user:
+       name: "{{ item }}"
+       groups: devops,wheel
+       shell: /bin/bash
+       state: present
+       createhome: yes
+       password: "{{ my_password | password_hash('sha512') }}"
+       system: no 
+       update_password: on_create 
+     loop:
+        - alice
+        - vincent

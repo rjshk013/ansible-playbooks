@@ -1,0 +1,15 @@
+- hosts: db-servers
+  become: true
+  vars:
+    user_names:
+      - 'server1'
+      - 'alice'
+      - 'vincent'
+  tasks:
+    - name: Remove Users
+      user:
+        name: '{{ item }}'
+        state: absent
+        remove: yes
+      loop: "{{ user_names }}"
+

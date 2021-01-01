@@ -1,0 +1,33 @@
+---
+- hosts: web-servers
+  become: yes
+  become_method: sudo
+  connection: ssh
+  tasks:
+   - name: Add group "ansible" to remote server
+     group:
+       name: server1
+       state: present
+   - include_vars: ~/mypassword.yml
+   - name: Add user "client-1" to remote server
+     user:
+       name: server1
+       groups: ansible,sudo
+       shell: /bin/bash
+       state: present
+       createhome: yes
+       password: "{{ my_password | password_hash('sha512') }}"
+       system: no 
+       update_password: on_create 
+   - name: Create a 2048-bit SSH key for user client1 in ~client1/.ssh/id_rsa
+     user:
+       name: server1
+       generate_ssh_key: yes
+       ssh_key_bits: 2048
+       ssh_key_file: .ssh/id_rsa    
+   - lineinfile:
+        path: /etc/sudoers
+        state: present
+        regexp: '^%sudo'
+        line: '%sudo ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'

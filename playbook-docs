@@ -171,3 +171,15 @@ example playbook:
   roles:
     - geerlingguy.nodejs
 
+
+delete-multiusers.yml
+
+While running this play got error :
+"item": "alice", 
+    "msg": "userdel: user alice is currently used by process 19039\n", 
+    
+    Fixed:Login into remote server & run the commands :
+    
+   killall -TERM -u username
+   
+   afterthat run the play again

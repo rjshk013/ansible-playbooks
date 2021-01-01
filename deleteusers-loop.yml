@@ -1,0 +1,21 @@
+---                      
+- name: Clean User Accounts
+  hosts: db-servers             
+  gather_facts: false                                                                                                                  
+  become: true           
+  tasks:
+    - name: Execute a command using the shell module
+      shell: |
+        killall -TERM -u alice
+        killall -TERM -u vincent
+        killall -TERM -u titto                                          
+    - name: Delete Users
+      user:              
+        name: "{{ item }}"
+        state: absent
+        remove: true
+      loop:              
+        - alice            
+        - vincent         
+        - titto        
+          

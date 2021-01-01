@@ -46,49 +46,8 @@ Encrypt ansible playbook using ansible-vault
 
 1.Encrypt ansible-playbook with ansible-vault
 
-ansible-vault encrypt <playbook>
+Alternative:
 
-run the playbook using ansible-vault
+you can create a secret file named storage.yml.then add the passwords values as password: value 
 
-ansible-playbook playbook --ask-vault-pass
-
-decrpt file:
-
-ansible-vault decrypt playbook
-
-use vault for storing password :
----------------------------------
-
-create a yml for storing passwords 
-
-ansible-vault create mypassword.yml
-
-enter a vault password 
-
-add below entry in this file 
-
-my_password: myPlaintextPassword
-
-add below entries in playbook:
-
-tasks:
-   - name: Add group "ansible" to remote server
-     group:
-       name: server1
-       state: present
-   - include_vars: ~/mypassword.yml
-   - name: Add user "client-1" to remote server
-     user:
-       name: server1
-       groups: ansible,sudo
-       shell: /bin/bash
-       state: present
-       createhome: yes
-       password: "{{ my_password | password_hash('sha512') }}"
-       system: no
-       update_password: on_create
-
-
-Run the playbook with ansible-vault password :
-
-ansible-playbook -i ansible/inventory ansuser.yml --ask-vault-pass -vvvv
+encrypt the file using ansible vault .give the file name in vars file 

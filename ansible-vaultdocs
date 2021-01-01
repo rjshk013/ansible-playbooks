@@ -51,3 +51,9 @@ Alternative:
 you can create a secret file named storage.yml.then add the passwords values as password: value 
 
 encrypt the file using ansible vault .give the file name in vars file 
+
+Run playbook without giving ansible vault password:
+
+save the password in particular file & give file location during play running:
+
+ansible-playbook -i ansible/inventory ansuser-withloop.yml --vault-password-file ~/.vault_pass.txt

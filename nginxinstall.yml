@@ -1,0 +1,20 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  become: yes
+  tasks:
+  - name: Update APT package manager repositories cache
+    become: true
+    apt:
+      update_cache: yes
+  - name: Install nginx
+    apt:
+      name: nginx
+      state: present
+
+  - name: Start NGiNX
+    service:
+      name: nginx
+      state: started
+
+

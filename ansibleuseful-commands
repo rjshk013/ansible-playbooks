@@ -177,3 +177,7 @@ This will show time :
 
 The above playbook will create a dynamic file based on the current date for E.g. niranjan2018-07-15.log
 
+ansible-playbook syntax check:
+-----------------------------
+
+ansible-playbook --syntax-check site.yml 

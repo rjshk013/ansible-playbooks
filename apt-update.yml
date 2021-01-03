@@ -1,0 +1,10 @@
+---
+- name: Playbook
+  hosts: web-servers
+  become: yes
+  tasks:
+  - name: Update APT package manager repositories cache
+    become: true
+    apt:
+      update_cache: yes
+

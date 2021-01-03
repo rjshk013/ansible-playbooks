@@ -183,3 +183,36 @@ While running this play got error :
    killall -TERM -u username
    
    afterthat run the play again
+   
+   
+   
+   phpinstall.yml:
+   -------------------
+   
+   create a folder named php
+   
+   create a folder handlers
+   
+   cd handlers
+   
+   nano main.yml & add the below contents 
+   
+   ---
+- name: Restart PHP-FPM
+  service:
+    name: php{{php_version}}-fpm
+    state: restarted
+    ####
+- name: Restart Nginx
+  service:
+    name: nginx
+    state: restarted
+
+
+create a file to store variables named vars.yml and below contents 
+
+nano vars.yml
+
+php_version: 7.2
+
+run the playbook phpinstall.yml

@@ -232,3 +232,7 @@ cd /home/ubuntu/app
 check the project folder 
 
 check the pm2 status 
+
+For git configuration:
+----------------------
+need to create public key as root user .copy the pub key to git account ssh key section

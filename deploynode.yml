@@ -1,0 +1,32 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  become: yes
+
+  vars:
+    - homeDir: /home/ubuntu
+    - repo: samplenodejs-app
+    - account: rjshk013
+    - appDir : app
+  tasks:
+  - name: Install Packages
+    apt: name={{ item }} update_cache=yes state=latest
+    with_items:
+      - build-essential
+  
+  - name: Create APP Directory
+    file: path={{homeDir}}/{{appDir}} state=directory
+  - name: Git Clone Repo
+    git: repo=git@github.com:{{account}}/{{repo}}.git dest={{homeDir}}/{{appDir}} update=yes force=yes 
+    register: git_finished
+
+  - name: Running NPM install
+    npm: path={{homeDir}}/{{appDir}}/
+    register: npm_finished
+    when: git_finished.changed
+
+
+  - name: Start APP
+    command: pm2 start ./index.js --name twilio chdir={{homeDir}}/{{appDir}}/
+    ignore_errors: yes
+    when: npm_finished.changed

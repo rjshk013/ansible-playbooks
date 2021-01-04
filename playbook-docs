@@ -216,3 +216,19 @@ nano vars.yml
 php_version: 7.2
 
 run the playbook phpinstall.yml
+
+
+deploynodeapp-awsec2.yml
+------------------------
+
+This will deploy nodejs app from github repo to a created app folder on aws ec2 ubuntu server and start the process as root user.
+
+to check pm2 status --login into server 
+
+sudo su
+
+cd /home/ubuntu/app
+
+check the project folder 
+
+check the pm2 status 

@@ -1,0 +1,21 @@
+---
+- name: Playbook
+  hosts: web-servers
+  become: yes
+  tasks:
+  - name: Gather package facts
+    package_facts:
+      manager: auto
+
+  - name: Debug if package is present
+    debug:
+      msg: 'yes, mypackage is present'
+    when: '"nginx" in ansible_facts.packages'
+
+  - name: Debug if package is absent
+    debug:
+      msg: 'no, mypackage is absent'
+    when: '"nginx" not in ansible_facts.packages'
+
+
+

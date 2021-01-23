@@ -63,4 +63,7 @@ Fix: run the ansible playbook with explicit ansible_interprter
 
 ansible-playbook postgresql.yml -e "ansible_python_interpreter=/usr/bin/python"
 
+Multipackagecheck.yml
+------------------------
 
+ it will show packages that already installed,not installed packages will shos as skipping state

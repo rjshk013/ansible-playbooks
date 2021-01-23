@@ -1,0 +1,16 @@
+
+To list all packages intentionally installed (not as dependencies) by apt commands, run the following :
+
+(zcat $(ls -tr /var/log/apt/history.log*.gz); cat /var/log/apt/history.log) 2>/dev/null |   egrep '^(Start-Date:|Commandline:)' |   grep -v aptdaemon |   egrep '^Commandline:'
+
+
+Ubuntu 14.04 and above
+
+The apt tool on Ubuntu 14.04 and above makes this very easy.
+
+apt list --installed
+
+to print packages to list 
+--------------------------
+
+sudo apt list --installed > ~/Desktop/packages

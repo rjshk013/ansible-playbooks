@@ -36,3 +36,5 @@ apt list --installed | grep program_name
 A better way is to use this command:
 
 apt -qq list program_name --installed
+
+dpkg-query -l

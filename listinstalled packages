@@ -38,3 +38,9 @@ A better way is to use this command:
 apt -qq list program_name --installed
 
 dpkg-query -l
+
+List the recently installed packages
+
+grep " install " /var/log/dpkg.log
+
+grep " install " /var/log/apt/history.log

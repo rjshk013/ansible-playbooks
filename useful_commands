@@ -1,0 +1,5 @@
+Linux list only directories using ls command
+
+Run the following ls command:
+
+ls -d */

@@ -1,0 +1,11 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: copy localfile to remote 
+    copy:
+      src: "{{ item }}"
+      dest: "$HOME/{{ item }}"
+    loop:  
+      - testfile
+      - testfile2

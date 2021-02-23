@@ -1,0 +1,8 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: delete a file if exists
+    file:
+      path: $HOME/absent_test_file
+      state: absent

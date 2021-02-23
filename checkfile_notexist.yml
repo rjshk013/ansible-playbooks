@@ -1,0 +1,8 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+    - name: check file that doesn't exist with state file
+      file:
+        path: $HOME/absent_test_file
+        state: file

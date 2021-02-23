@@ -1,3 +1,9 @@
+To check remoteservers are connected with ssh properly
+
+ansible <hostgroupname> -m ping
+
+eg: ansible aws-ec2 -m ping
+
 To run any playbook use the following command
 
 $ ansible-playbook <playbook.yml>

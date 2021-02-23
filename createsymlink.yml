@@ -1,0 +1,14 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: create a file if it doesn't exist
+    file:
+      path: $HOME/test_file
+      state: touch
+  - name: create a symlink if it doesn't exist
+    file:
+      src: $HOME/test_file
+      dest: $HOME/test_directory1/test_file_symlink
+      state: link
+  

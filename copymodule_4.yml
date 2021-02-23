@@ -1,0 +1,12 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: set permission on copied file to remote
+    copy:
+      src: myapp.conf
+      dest: /etc/myapp.conf
+      owner: root
+      group: root
+      mode: 0600
+    become: true  

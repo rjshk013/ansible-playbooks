@@ -1,0 +1,12 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: change ownership & permissions of directory with become and of the particular user directory
+    file:
+      path: "/home/{{ ansible_ssh_user }}/test_directory1"
+      state: directory
+      owner: root
+      group: root
+      mode: 0755
+  become: true

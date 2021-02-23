@@ -2,7 +2,7 @@
 - name: Playbook
   hosts: aws-ec2
   tasks:
-  - name: check directory with state touch
+  - name: create directory
     file:
       path: $HOME/test_directory
-      state: touch
+      state: directory

@@ -1,0 +1,12 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: ensure directory exists
+    file:
+      path: $HOME/test_directory
+      state: directory
+  - name: delete the directory if exists
+    file:
+      path: $HOME/test_directory
+      state: absent

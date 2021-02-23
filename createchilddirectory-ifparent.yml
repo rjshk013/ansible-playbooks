@@ -1,0 +1,8 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: ensure a directory exists and create child directories under parent
+    file:
+      path: $HOME/test_directory/inner_test_directory
+      state: directory

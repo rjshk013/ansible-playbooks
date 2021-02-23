@@ -1,0 +1,8 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: copy local directory to remote 
+    copy:
+      src: inner_dir
+      dest: $HOME

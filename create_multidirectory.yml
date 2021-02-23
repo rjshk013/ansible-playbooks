@@ -1,0 +1,12 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+  - name: create multiple directories in a loop
+    file:
+      path: "$HOME/{{ item }}"
+      state: directory
+    loop:
+      - test_dir2
+      - test_dir3
+      - test_dir4  

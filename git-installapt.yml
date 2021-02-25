@@ -1,0 +1,11 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  become: true
+  tasks:
+    
+    - name: Install git
+      apt:
+        name: git
+        state: present
+        update_cache: yes

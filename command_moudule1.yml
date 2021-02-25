@@ -1,0 +1,13 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+    - name: ensure directory exists
+      file:
+        path: /tmp/test_dir
+        state: directory
+
+    - name: ensure file exists and create file in specified directory
+      command: touch file3
+      args:
+        chdir: /tmp/test_dir    

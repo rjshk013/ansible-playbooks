@@ -1,0 +1,8 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  vars:
+    message: "Hellow world"
+  tasks:
+    - name: echo content to /tmp test file
+      shell: "echo {{ message }} > /tmp/test_file"

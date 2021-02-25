@@ -1,0 +1,13 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+    - name: use args,environment and loop in shell and create two files from item in /tmp directory
+      shell: echo " Helllo World " > $target
+      args:
+        chdir: /tmp
+      environment:
+        target: "{{ item }}"
+      loop: 
+        - test_file1
+        - test_file2   

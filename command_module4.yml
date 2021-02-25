@@ -1,0 +1,11 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+    
+    - name: run multiple commands
+      command: "{{ item }}"
+      loop: 
+        - mkdir /tmp/testdir
+        - touch /tmp/testfile5
+        - mv /tmp/testfile5 /tmp/testdir

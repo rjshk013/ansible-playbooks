@@ -1,0 +1,10 @@
+---
+- name: Playbook
+  hosts: aws-ec2
+  tasks:
+    
+    - name: create file using environment variables 
+      command: touch $TARGET_DIR/$FILE_NAME
+      environment:
+        TARGET_DIR: /tmp
+        FILE_NAME: test_file4

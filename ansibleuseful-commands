@@ -4,6 +4,10 @@ ansible <hostgroupname> -m ping
 
 eg: ansible aws-ec2 -m ping
 
+To get remote hosts information use setup module:
+
+ansible aws-ec2 -m setup
+
 To run any playbook use the following command
 
 $ ansible-playbook <playbook.yml>

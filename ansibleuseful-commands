@@ -1,8 +1,12 @@
-To check remoteservers are connected with ssh properly
+To check remoteservers are connected with ssh properly(The command to check connectivity of hosts)
 
 ansible <hostgroupname> -m ping
 
 eg: ansible aws-ec2 -m ping
+
+Rebooting hosts
+
+# ansible <group> -a “/sbin/reboot”
 
 To get remote hosts information use setup module:
 

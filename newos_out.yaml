@@ -1,0 +1,20 @@
+- hosts: servers
+  gather_facts: true
+  tasks:
+    - name: Gather OS details
+      command: grep -E '^(VERSION|NAME)=' /etc/os-release
+      register: os_release_output
+      become: true
+
+    - name: Save OS release output to temporary file on remote servers
+      copy:
+        content: "{{ os_release_output.stdout }}"
+        dest: /tmp/os_release_output.txt
+
+    - name: Fetch OS release output to local machine
+      fetch:
+        src: /tmp/os_release_output.txt
+        dest: /home/userurolime/ansible-playbooks/
+
+
+

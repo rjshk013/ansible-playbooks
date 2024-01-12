@@ -1,0 +1,66 @@
+- hosts: servers
+  gather_facts: true
+  tasks:
+    - name: Gather OS details
+      command: grep -E '^(VERSION|NAME)=' /etc/os-release
+      register: os_release_output
+      become: true
+
+    - name: Save OS release output to temporary file on remote servers
+      copy:
+        content: "{{ os_release_output.stdout }}"
+        dest: /tmp/os_release_output.txt
+
+    - name: Get PHP version
+      command: php -v
+      register: php_version
+      become: true
+      ignore_errors: true  # Ignore errors in case PHP isn't installed or the command fails
+
+    - name: Debug PHP version command output
+      debug:
+        msg: "PHP version command output: {{ php_version.stdout }}"
+      when: php_version is succeeded
+
+    - name: Extract PHP version information
+      set_fact:
+        php_version_output: "{{ php_version.stdout | regex_search('PHP [0-9]+\\.[0-9]+\\.[0-9]+') }}"
+      when: php_version is succeeded
+
+    - name: Save PHP version output to temporary file on remote servers
+      copy:
+        content: "{{ php_version_output }}"
+        dest: /tmp/php_version_output.txt
+      when: php_version is succeeded
+
+    - name: Fetch OS release output to local machine
+      fetch:
+        src: /tmp/os_release_output.txt
+        dest: /home/userurolime/ansible-playbooks/
+
+    - name: Fetch PHP version output to local machine
+      fetch:
+        src: /tmp/php_version_output.txt
+        dest: /home/userurolime/ansible-playbooks/
+      when: php_version is succeeded
+
+    - name: Check file content on the remote server
+      shell: cat /tmp/php_version_output.txt
+      register: file_content
+      when: php_version is succeeded
+
+    - name: Display file content
+      debug:
+        var: file_content.stdout
+      when: php_version is succeeded
+
+
+
+
+
+
+
+
+
+
+

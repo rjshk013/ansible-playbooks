@@ -1,0 +1,39 @@
+- hosts: servers
+  gather_facts: true
+  tasks:
+    - name: Gather OS details
+      command: grep -E '^(VERSION|NAME)=' /etc/os-release
+      register: os_release_output
+      become: true
+
+    - name: Get PHP version
+      command: php -v
+      register: php_version
+      become: true
+      ignore_errors: true
+
+    - name: Create a combined content with OS and PHP version
+      set_fact:
+        combined_output: "{{ os_release_output.stdout_lines | join('\n') }}\n\n{{ php_version.stdout }}"
+
+    - name: Save combined output to a temporary file on remote servers
+      copy:
+        content: "{{ combined_output }}"
+        dest: /tmp/os_php_combined_output.txt
+      when: php_version is succeeded
+
+    - name: Fetch combined output to local machine
+      fetch:
+        src: /tmp/os_php_combined_output.txt
+        dest: /home/userurolime/ansible-playbooks/
+      when: php_version is succeeded
+
+    - name: Check file content on the remote server
+      shell: cat /tmp/os_php_combined_output.txt
+      register: file_content
+      when: php_version is succeeded
+
+    - name: Display file content
+      debug:
+        var: file_content.stdout
+      when: php_version is succeeded
